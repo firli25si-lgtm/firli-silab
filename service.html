@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <title>Katalog Alat - SiLab Sistem Informasi Inventaris Lab</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Katalog Alat Lab, Alat Elektronik, Sensor, Tools Handheld, SiLab" name="keywords">
+    <meta content="Daftar Katalog Peralatan Laboratorium SiLab Kampus Real-Time" name="description">
+
+    <!-- Favicon -->
+    <link href="img/silab-icon.png" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">  
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark text-light px-0 py-2">
+        <div class="row gx-0 d-none d-lg-flex">
+            <div class="col-lg-7 px-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center me-4">
+                    <span class="fa fa-phone-alt me-2 text-primary"></span>
+                    <span>(021) 789-0123 / Ext. 204</span>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center me-4">
+                    <span class="far fa-envelope me-2 text-primary"></span>
+                    <span>silab@kampus.ac.id</span>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center">
+                    <span class="far fa-clock me-2 text-primary"></span>
+                    <span>Senin - Jumat: 08:00 - 16:30 WIB</span>
+                </div>
+            </div>
+            <div class="col-lg-5 px-5 text-end">
+                <div class="h-100 d-inline-flex align-items-center me-3">
+                    <span class="badge bg-success px-3 py-1"><i class="fa fa-door-open me-1"></i> Laboratorium Buka</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img src="img/silab-logo.png" alt="SiLab Logo" style="height: 50px;" class="me-2">
+            <div class="d-none d-sm-block text-start">
+                <h2 class="m-0 fw-bold" style="color: #1E40AF; line-height: 1.1;">Si<span style="color: #10B981;">Lab</span></h2>
+                <small class="text-muted fw-semi-bold" style="font-size: 11px; letter-spacing: 0.5px;">Inventaris &amp; Peminjaman Lab</small>
+            </div>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link">Beranda</a>
+                <a href="about.html" class="nav-item nav-link">Tentang SiLab</a>
+                <a href="service.html" class="nav-item nav-link active">Katalog Alat</a>
+                <a href="feature.html" class="nav-item nav-link">Alur Peminjaman</a>
+                <a href="contact.html" class="nav-item nav-link">Kontak &amp; Lokasi</a>
+            </div>
+            <div class="d-flex align-items-center pe-lg-4 py-2 py-lg-0">
+                <a href="index.html#form-pinjam" class="btn btn-primary px-3 py-2 rounded-pill fw-bold shadow-sm">
+                    <i class="fa fa-clipboard-check me-1"></i> Ajukan Pinjam
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container text-center py-5">
+            <h1 class="display-3 text-white mb-4 animated slideInDown fw-bold">Katalog Peralatan Lab</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="index.html" class="text-white">Beranda</a></li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Katalog Alat</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Catalog Service Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 650px;">
+                <p class="fs-5 fw-bold text-primary mb-1">DAFTAR INVENTARIS ALAT</p>
+                <h1 class="display-6 mb-4 fw-bold">Peralatan Laboratorium Siap Pakai</h1>
+                <p class="text-muted">Setiap peralatan telah dikalibrasi dan diverifikasi kondisinya oleh Petugas Lab. Pilih alat untuk melihat spesifikasi atau mengajukan peminjaman online.</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="row justify-content-center mb-5 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="col-12 text-center">
+                    <div class="filter-btn-group d-inline-flex flex-wrap justify-content-center p-2 bg-light rounded-pill border">
+                        <button class="btn active filter-btn" data-category="all">
+                            <i class="fa fa-layer-group me-1"></i> Semua Kategori
+                        </button>
+                        <button class="btn filter-btn" data-category="elektronik">
+                            <i class="fa fa-bolt me-1"></i> Alat Elektronik
+                        </button>
+                        <button class="btn filter-btn" data-category="sensor">
+                            <i class="fa fa-microchip me-1"></i> Sensor &amp; Modul
+                        </button>
+                        <button class="btn filter-btn" data-category="handheld">
+                            <i class="fa fa-tools me-1"></i> Tools Handheld
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools Grid -->
+            <div class="row g-4" id="toolGrid">
+                <!-- 1. Oscilloscope -->
+                <div class="col-lg-4 col-md-6 tool-item elektronik wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="img/lab-oscilloscope.svg" alt="Digital Oscilloscope">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 6 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-light text-primary border mb-2 align-self-start">Alat Elektronik</span>
+                            <h5 class="fw-bold mb-1">Oscilloscope Digital 100MHz</h5>
+                            <small class="text-muted mb-2">Kode: ELK-OSC-01</small>
+                            <p class="text-muted small mb-3 flex-grow-1">4 Channel Digital Storage Oscilloscope dengan bandwidth 100MHz, real-time sample rate 1GSa/s, dan USB logging.</p>
+                            <a href="index.html#form-pinjam" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
+                                <i class="fa fa-clipboard-check me-1"></i>Ajukan Pinjam Alat Ini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Function Generator -->
+                <div class="col-lg-4 col-md-6 tool-item elektronik wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="img/lab-func-gen.svg" alt="Function Generator">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 4 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-light text-primary border mb-2 align-self-start">Alat Elektronik</span>
+                            <h5 class="fw-bold mb-1">Function Generator DDS 25MHz</h5>
+                            <small class="text-muted mb-2">Kode: ELK-GEN-02</small>
+                            <p class="text-muted small mb-3 flex-grow-1">Dual-channel Arbitrary Waveform Generator dengan modulasi sinyal Sinus, Kotak, Segitiga, dan Pulsa.</p>
+                            <a href="index.html#form-pinjam" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
+                                <i class="fa fa-clipboard-check me-1"></i>Ajukan Pinjam Alat Ini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Multimeter -->
+                <div class="col-lg-4 col-md-6 tool-item elektronik wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="img/lab-multimeter.svg" alt="Digital Multimeter">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 12 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-light text-primary border mb-2 align-self-start">Alat Elektronik</span>
+                            <h5 class="fw-bold mb-1">Digital Multimeter True RMS</h5>
+                            <small class="text-muted mb-2">Kode: ELK-DMM-03</small>
+                            <p class="text-muted small mb-3 flex-grow-1">Pengukur presisi tinggi Auto-Ranging untuk Tegangan AC/DC, Arus hingga 10A, Hambatan, dan Kontinuitas.</p>
+                            <a href="index.html#form-pinjam" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
+                                <i class="fa fa-clipboard-check me-1"></i>Ajukan Pinjam Alat Ini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Power Supply -->
+                <div class="col-lg-4 col-md-6 tool-item elektronik wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="img/lab-power-supply.svg" alt="Power Supply">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 8 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-light text-primary border mb-2 align-self-start">Alat Elektronik</span>
+                            <h5 class="fw-bold mb-1">DC Power Supply 30V 5A</h5>
+                            <small class="text-muted mb-2">Kode: ELK-PWR-04</small>
+                            <p class="text-muted small mb-3 flex-grow-1">Catu daya laboratorium teregulasi linier dengan proteksi Over Voltage (OVP) dan Over Current (OCP).</p>
+                            <a href="index.html#form-pinjam" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
+                                <i class="fa fa-clipboard-check me-1"></i>Ajukan Pinjam Alat Ini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Ultrasonic -->
+                <div class="col-lg-4 col-md-6 tool-item sensor wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="img/lab-ultrasonic.svg" alt="Ultrasonic">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 25 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-light text-primary border mb-2 align-self-start">Sensor &amp; Modul</span>
+                            <h5 class="fw-bold mb-1">Sensor Ultrasonik HC-SR04</h5>
+                            <small class="text-muted mb-2">Kode: SNS-ULT-01</small>
+                            <p class="text-muted small mb-3 flex-grow-1">Modul sensor jarak sonar non-kontak 2 cm - 400 cm untuk mikrokontroler Arduino &amp; ESP32.</p>
+                            <a href="index.html#form-pinjam" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
+                                <i class="fa fa-clipboard-check me-1"></i>Ajukan Pinjam Alat Ini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Solder Station -->
+                <div class="col-lg-4 col-md-6 tool-item handheld wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="img/lab-soldering.svg" alt="Soldering Station">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 10 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <span class="badge bg-light text-primary border mb-2 align-self-start">Tools Handheld</span>
+                            <h5 class="fw-bold mb-1">Digital Soldering Station ESD 60W</h5>
+                            <small class="text-muted mb-2">Kode: TLS-SLD-01</small>
+                            <p class="text-muted small mb-3 flex-grow-1">Stasiun solder digital anti-statis (ESD-safe) pengatur suhu presisi 200°C - 480°C dan dudukan keramik.</p>
+                            <a href="index.html#form-pinjam" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
+                                <i class="fa fa-clipboard-check me-1"></i>Ajukan Pinjam Alat Ini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Catalog Service End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <img src="img/silab-logo.png" alt="SiLab" style="height: 48px; background: white; border-radius: 6px; padding: 4px;" class="mb-3">
+                    <h5 class="text-white mb-3">SiLab Kampus</h5>
+                    <p class="text-muted small">Sistem Informasi Inventaris &amp; Peminjaman Alat Laboratorium terintegrasi untuk mendukung kegiatan praktikum dan riset teknologi.</p>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-white mb-4">Lokasi &amp; Jam Layanan</h5>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3 text-primary"></i>Gedung Laboratorium Terpadu, Lantai 2</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3 text-primary"></i>(021) 789-0123 / Ext. 204</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3 text-primary"></i>silab@kampus.ac.id</p>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-white mb-4">Tautan Cepat</h5>
+                    <a class="btn btn-link" href="index.html">Beranda</a>
+                    <a class="btn btn-link" href="about.html">Tentang SiLab</a>
+                    <a class="btn btn-link" href="service.html">Katalog Alat</a>
+                    <a class="btn btn-link" href="feature.html">Alur Peminjaman</a>
+                    <a class="btn btn-link" href="contact.html">Kontak</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        $('.filter-btn').on('click', function() {
+            $('.filter-btn').removeClass('active');
+            $(this).addClass('active');
+
+            var cat = $(this).data('category');
+            if (cat === 'all') {
+                $('.tool-item').fadeIn(300);
+            } else {
+                $('.tool-item').hide();
+                $('.tool-item.' + cat).fadeIn(300);
+            }
+        });
+    </script>
+</body>
+
+</html>
