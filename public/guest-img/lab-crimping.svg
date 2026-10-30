@@ -1,0 +1,16 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <!-- Plier Handles -->
+  <path d="M 120 250 C 130 180 160 140 180 120 L 195 135 C 175 160 150 200 140 260 Z" fill="#EF4444" stroke="#B91C1C" stroke-width="2"/>
+  <path d="M 280 250 C 270 180 240 140 220 120 L 205 135 C 225 160 250 200 260 260 Z" fill="#EF4444" stroke="#B91C1C" stroke-width="2"/>
+  <!-- Heavy Duty Steel Head -->
+  <rect x="160" y="45" width="80" height="90" rx="8" fill="#475569" stroke="#334155" stroke-width="3"/>
+  <!-- Crimping Die Ports (8P8C / 6P4C) -->
+  <rect x="175" y="60" width="50" height="25" rx="3" fill="#1E293B" stroke="#64748B" stroke-width="2"/>
+  <text x="200" y="77" font-family="Arial, sans-serif" font-size="11" fill="#F8FAFC" font-weight="bold" text-anchor="middle">RJ45 8P</text>
+  <rect x="180" y="95" width="40" height="20" rx="3" fill="#1E293B" stroke="#64748B" stroke-width="2"/>
+  <text x="200" y="109" font-family="Arial, sans-serif" font-size="10" fill="#F8FAFC" font-weight="bold" text-anchor="middle">RJ11 6P</text>
+  <!-- Pivot Bolt -->
+  <circle cx="200" cy="140" r="14" fill="#0F172A" stroke="#CBD5E1" stroke-width="3"/>
+  <circle cx="200" cy="140" r="5" fill="#94A3B8"/>
+  <text x="200" y="280" font-family="Arial, sans-serif" font-size="12" fill="#64748B" text-anchor="middle" font-weight="bold">CRIMPING TOOL KIT PRO</text>
+</svg>

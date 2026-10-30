@@ -1,0 +1,26 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <rect x="25" y="35" width="350" height="230" rx="14" fill="#1E293B" stroke="#475569" stroke-width="4"/>
+  <rect x="50" y="55" width="180" height="110" rx="8" fill="#0F172A" stroke="#0284C7" stroke-width="2"/>
+  <!-- Display Sine & Param -->
+  <path d="M 60 110 Q 80 80 100 110 T 140 110 T 180 110 T 220 110" fill="none" stroke="#38BDF8" stroke-width="3"/>
+  <text x="60" y="75" font-family="Arial, sans-serif" font-size="11" fill="#38BDF8" font-weight="bold">DDS SINE WAVE</text>
+  <text x="60" y="145" font-family="monospace" font-size="16" fill="#F8FAFC" font-weight="bold">Freq: 10.000 MHz</text>
+  <text x="60" y="160" font-family="monospace" font-size="12" fill="#94A3B8">Ampl: 5.00 Vpp</text>
+  <!-- Keypad & Dial -->
+  <circle cx="290" cy="110" r="30" fill="#334155" stroke="#64748B" stroke-width="3"/>
+  <circle cx="290" cy="110" r="8" fill="#0284C7"/>
+  <!-- Mode Buttons -->
+  <rect x="50" y="185" width="40" height="22" rx="4" fill="#334155"/>
+  <text x="70" y="200" font-family="Arial, sans-serif" font-size="9" fill="#FFF" text-anchor="middle">SINE</text>
+  <rect x="100" y="185" width="40" height="22" rx="4" fill="#334155"/>
+  <text x="120" y="200" font-family="Arial, sans-serif" font-size="9" fill="#FFF" text-anchor="middle">SQR</text>
+  <rect x="150" y="185" width="40" height="22" rx="4" fill="#334155"/>
+  <text x="170" y="200" font-family="Arial, sans-serif" font-size="9" fill="#FFF" text-anchor="middle">TRI</text>
+  <rect x="200" y="185" width="40" height="22" rx="4" fill="#334155"/>
+  <text x="220" y="200" font-family="Arial, sans-serif" font-size="9" fill="#FFF" text-anchor="middle">ARB</text>
+  <!-- Output Terminals -->
+  <circle cx="270" cy="225" r="10" fill="#64748B" stroke="#CBD5E1" stroke-width="3"/>
+  <text x="270" y="248" font-family="Arial, sans-serif" font-size="8" fill="#94A3B8" text-anchor="middle">CH1 OUT</text>
+  <circle cx="325" cy="225" r="10" fill="#64748B" stroke="#CBD5E1" stroke-width="3"/>
+  <text x="325" y="248" font-family="Arial, sans-serif" font-size="8" fill="#94A3B8" text-anchor="middle">CH2 OUT</text>
+</svg>
