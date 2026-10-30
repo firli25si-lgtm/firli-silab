@@ -88,7 +88,7 @@
                 <a href="{{ url('/contact') }}" class="nav-item nav-link">Kontak &amp; Lokasi</a>
             </div>
             <div class="d-flex align-items-center pe-lg-4 py-2 py-lg-0">
-                <a href="index.html#form-pinjam" class="btn btn-primary px-3 py-2 rounded-pill fw-bold shadow-sm">
+                <a href="{{ url('/#form-pinjam') }}" class="btn btn-primary px-3 py-2 rounded-pill fw-bold shadow-sm">
                     <i class="fa fa-clipboard-check me-1"></i> Ajukan Pinjam
                 </a>
             </div>
@@ -157,7 +157,7 @@
                             <h5 class="fw-bold mb-1">Oscilloscope Digital 100MHz</h5>
                             <small class="text-muted mb-2">Kode: ELK-OSC-01</small>
                             <p class="text-muted small mb-3 flex-grow-1">4 Channel Digital Storage Oscilloscope dengan bandwidth 100MHz, real-time sample rate 1GSa/s, dan USB logging.</p>
-                            <a href="index.html#form-pinjam" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
+                            <a href="{{ url('/#form-pinjam') }}" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
                                 <i class="fa fa-clipboard-check me-1"></i>Ajukan Pinjam Alat Ini
                             </a>
                         </div>
@@ -178,7 +178,7 @@
                             <h5 class="fw-bold mb-1">Function Generator DDS 25MHz</h5>
                             <small class="text-muted mb-2">Kode: ELK-GEN-02</small>
                             <p class="text-muted small mb-3 flex-grow-1">Dual-channel Arbitrary Waveform Generator dengan modulasi sinyal Sinus, Kotak, Segitiga, dan Pulsa.</p>
-                            <a href="index.html#form-pinjam" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
+                            <a href="{{ url('/#form-pinjam') }}" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
                                 <i class="fa fa-clipboard-check me-1"></i>Ajukan Pinjam Alat Ini
                             </a>
                         </div>
@@ -199,7 +199,7 @@
                             <h5 class="fw-bold mb-1">Digital Multimeter True RMS</h5>
                             <small class="text-muted mb-2">Kode: ELK-DMM-03</small>
                             <p class="text-muted small mb-3 flex-grow-1">Pengukur presisi tinggi Auto-Ranging untuk Tegangan AC/DC, Arus hingga 10A, Hambatan, dan Kontinuitas.</p>
-                            <a href="index.html#form-pinjam" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
+                            <a href="{{ url('/#form-pinjam') }}" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
                                 <i class="fa fa-clipboard-check me-1"></i>Ajukan Pinjam Alat Ini
                             </a>
                         </div>
@@ -220,7 +220,7 @@
                             <h5 class="fw-bold mb-1">DC Power Supply 30V 5A</h5>
                             <small class="text-muted mb-2">Kode: ELK-PWR-04</small>
                             <p class="text-muted small mb-3 flex-grow-1">Catu daya laboratorium teregulasi linier dengan proteksi Over Voltage (OVP) dan Over Current (OCP).</p>
-                            <a href="index.html#form-pinjam" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
+                            <a href="{{ url('/#form-pinjam') }}" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
                                 <i class="fa fa-clipboard-check me-1"></i>Ajukan Pinjam Alat Ini
                             </a>
                         </div>
@@ -241,7 +241,7 @@
                             <h5 class="fw-bold mb-1">Sensor Ultrasonik HC-SR04</h5>
                             <small class="text-muted mb-2">Kode: SNS-ULT-01</small>
                             <p class="text-muted small mb-3 flex-grow-1">Modul sensor jarak sonar non-kontak 2 cm - 400 cm untuk mikrokontroler Arduino &amp; ESP32.</p>
-                            <a href="index.html#form-pinjam" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
+                            <a href="{{ url('/#form-pinjam') }}" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
                                 <i class="fa fa-clipboard-check me-1"></i>Ajukan Pinjam Alat Ini
                             </a>
                         </div>
@@ -262,7 +262,7 @@
                             <h5 class="fw-bold mb-1">Digital Soldering Station ESD 60W</h5>
                             <small class="text-muted mb-2">Kode: TLS-SLD-01</small>
                             <p class="text-muted small mb-3 flex-grow-1">Stasiun solder digital anti-statis (ESD-safe) pengatur suhu presisi 200°C - 480°C dan dudukan keramik.</p>
-                            <a href="index.html#form-pinjam" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
+                            <a href="{{ url('/#form-pinjam') }}" class="btn btn-primary btn-sm rounded-pill w-100 fw-bold">
                                 <i class="fa fa-clipboard-check me-1"></i>Ajukan Pinjam Alat Ini
                             </a>
                         </div>

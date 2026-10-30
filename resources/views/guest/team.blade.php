@@ -56,7 +56,7 @@
                 <a href="{{ url('/contact') }}" class="nav-item nav-link">Kontak &amp; Lokasi</a>
             </div>
             <div class="d-flex align-items-center pe-lg-4 py-2 py-lg-0">
-                <a href="index.html#form-pinjam" class="btn btn-primary px-3 py-2 rounded-pill fw-bold shadow-sm">
+                <a href="{{ url('/#form-pinjam') }}" class="btn btn-primary px-3 py-2 rounded-pill fw-bold shadow-sm">
                     <i class="fa fa-clipboard-check me-1"></i> Ajukan Pinjam
                 </a>
             </div>

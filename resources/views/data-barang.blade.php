@@ -68,10 +68,10 @@
                                             <td><span class="badge bg-light-secondary text-dark">{{ $item->kode_alat }}</span></td>
                                             <td class="fw-bold">{{ $item->nama_alat }}</td>
                                             <td>{{ $item->kategori->nama_kategori ?? '-' }}</td>
-                                            <td>{{ $item->jumlah_total }}</td>
+                                            <td>{{ $item->stok }}</td>
                                             <td>
-                                                <span class="badge {{ $item->jumlah_tersedia > 0 ? 'bg-success' : 'bg-danger' }}">
-                                                    {{ $item->jumlah_tersedia }}
+                                                <span class="badge {{ $item->stok_tersedia > 0 ? 'bg-success' : 'bg-danger' }}">
+                                                    {{ $item->stok_tersedia }}
                                                 </span>
                                             </td>
                                             <td>

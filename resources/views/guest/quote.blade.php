@@ -230,7 +230,7 @@
         document.getElementById('dedicatedLoanForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Pengajuan peminjaman berhasil dikirim ke Petugas Lab!\nAnda akan diarahkan kembali ke beranda untuk melihat struk bukti peminjaman.');
-            window.location.href = 'index.html#katalog';
+            window.location.href = "{{ url('/#katalog') }}";
         });
     </script>
 </body>
