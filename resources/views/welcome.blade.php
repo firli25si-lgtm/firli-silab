@@ -1,0 +1,1704 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <title>SiLab - Sistem Informasi Inventaris & Peminjaman Alat Lab</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="SiLab, Sistem Informasi Laboratorium, Inventaris Alat Lab, Peminjaman Alat Kampus" name="keywords">
+    <meta content="SiLab - Sistem Informasi Inventaris & Peminjaman Alat Laboratorium Kampus Real-Time" name="description">
+
+    <!-- Favicon -->
+    <link href="{{ asset('img/silab-icon.png') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">  
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <style>
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(15, 66, 41, 0.88) 0%, rgba(30, 64, 175, 0.82) 100%);
+        }
+        .hero-overlay-2 {
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.88) 0%, rgba(15, 66, 41, 0.82) 100%);
+        }
+        .text-emerald {
+            color: #10B981 !important;
+        }
+        .bg-emerald-soft {
+            background-color: #ECFDF5;
+        }
+        .badge-subheading {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #FFFFFF;
+            font-size: 13px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark text-light px-0 py-2">
+        <div class="row gx-0 d-none d-lg-flex">
+            <div class="col-lg-7 px-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center me-4">
+                    <span class="fa fa-phone-alt me-2 text-primary"></span>
+                    <span>(021) 789-0123 / Ext. 204</span>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center me-4">
+                    <span class="far fa-envelope me-2 text-primary"></span>
+                    <span>silab@kampus.ac.id</span>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center">
+                    <span class="far fa-clock me-2 text-primary"></span>
+                    <span>Senin - Jumat: 08:00 - 16:30 WIB</span>
+                </div>
+            </div>
+            <div class="col-lg-5 px-5 text-end">
+                <div class="h-100 d-inline-flex align-items-center me-3">
+                    <span class="badge bg-success px-3 py-1"><i class="fa fa-door-open me-1"></i> Laboratorium Buka</span>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center mx-n2">
+                    <span class="me-2 text-muted">Portal SiLab:</span>
+                    <a class="btn btn-link text-light" href=""><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-link text-light" href=""><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-link text-light" href=""><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-link text-light" href=""><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm">
+        <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <img src="{{ asset('img/silab-logo.png') }}" alt="SiLab Logo" style="height: 50px;" class="me-2">
+            <div class="d-none d-sm-block text-start">
+                <h2 class="m-0 fw-bold" style="color: #1E40AF; line-height: 1.1;">Si<span style="color: #10B981;">Lab</span></h2>
+                <small class="text-muted fw-semi-bold" style="font-size: 11px; letter-spacing: 0.5px;">Inventaris &amp; Peminjaman Lab</small>
+            </div>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="{{ route('home') }}" class="nav-item nav-link active">Beranda</a>
+                <a href="#tentang" class="nav-item nav-link">Tentang SiLab</a>
+                <a href="#katalog" class="nav-item nav-link">Katalog Alat</a>
+                <a href="#roles" class="nav-item nav-link">Peran Pengguna</a>
+                <a href="#alur" class="nav-item nav-link">Alur Peminjaman</a>
+                <a href="#form-pinjam" class="nav-item nav-link">Form Pinjam</a>
+                <a href="#kontak" class="nav-item nav-link">Kontak</a>
+            </div>
+            <div class="d-flex align-items-center pe-lg-4 py-2 py-lg-0">
+                <button type="button" class="btn btn-outline-primary px-3 py-2 me-2 rounded-pill fw-bold" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="fa fa-user me-1"></i> Masuk / Login
+                </button>
+                <a href="#form-pinjam" class="btn btn-primary px-3 py-2 rounded-pill fw-bold shadow-sm">
+                    <i class="fa fa-clipboard-check me-1"></i> Ajukan Pinjam
+                </a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0 wow fadeIn" data-wow-delay="0.1s">
+        <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active">
+                    <img class="w-100" src="{{ asset('img/carousel-1.jpg') }}" alt="Laboratorium SiLab">
+                    <div class="carousel-caption hero-overlay">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10">
+                                    <span class="badge badge-subheading px-3 py-2 rounded-pill mb-3">
+                                        <i class="fa fa-microchip me-2"></i>SISTEM INFORMASI INVENTARIS &amp; PEMINJAMAN ALAT LAB
+                                    </span>
+                                    <h1 class="display-3 text-white mb-4 animated slideInDown fw-bold">
+                                        Digitalisasi Peminjaman Alat Laboratorium Kampus
+                                    </h1>
+                                    <p class="fs-5 text-white-50 mb-5 animated slideInDown mx-auto" style="max-width: 800px;">
+                                        Tinggalkan pencatatan manual buku besar. Pantau ketersediaan alat lab secara real-time, ajukan permohonan peminjaman online, dan dapatkan persetujuan cepat dengan bukti digital resmi.
+                                    </p>
+                                    <div class="d-flex justify-content-center gap-3 animated slideInDown flex-wrap">
+                                        <a href="#katalog" class="btn btn-primary py-sm-3 px-sm-4 rounded-pill fw-bold">
+                                            <i class="fa fa-boxes me-2"></i>Jelajahi Katalog Alat
+                                        </a>
+                                        <a href="#form-pinjam" class="btn btn-outline-light py-sm-3 px-sm-4 rounded-pill fw-bold">
+                                            <i class="fa fa-clipboard-check me-2"></i>Ajukan Peminjaman
+                                        </a>
+                                        <button class="btn btn-light py-sm-3 px-sm-4 rounded-pill fw-bold text-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                            <i class="fa fa-sign-in-alt me-2"></i>Login Petugas / Mahasiswa
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-item">
+                    <img class="w-100" src="{{ asset('img/carousel-2.jpg') }}" alt="Inventaris Alat SiLab">
+                    <div class="carousel-caption hero-overlay-2">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10">
+                                    <span class="badge badge-subheading px-3 py-2 rounded-pill mb-3">
+                                        <i class="fa fa-sync-alt me-2"></i>KATALOG REAL-TIME &amp; TRANSPARANSI STOK
+                                    </span>
+                                    <h1 class="display-3 text-white mb-4 animated slideInDown fw-bold">
+                                        Bebas Kerancuan Status Alat Laboratorium
+                                    </h1>
+                                    <p class="fs-5 text-white-50 mb-5 animated slideInDown mx-auto" style="max-width: 800px;">
+                                        Pantau status alat secara akurat (Tersedia, Dipinjam, Perbaikan). Pelacakan histori peminjaman otomatis untuk mencegah keterlambatan pengembalian alat oleh mahasiswa.
+                                    </p>
+                                    <div class="d-flex justify-content-center gap-3 animated slideInDown flex-wrap">
+                                        <a href="#alur" class="btn btn-primary py-sm-3 px-sm-4 rounded-pill fw-bold">
+                                            <i class="fa fa-route me-2"></i>Lihat Prosedur Pinjam
+                                        </a>
+                                        <a href="#roles" class="btn btn-outline-light py-sm-3 px-sm-4 rounded-pill fw-bold">
+                                            <i class="fa fa-users me-2"></i>Peran &amp; Hak Akses
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Sebelumnya</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Selanjutnya</span>
+            </button>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+    <!-- Top Feature Start -->
+    <div class="container-fluid top-feature py-5 pt-lg-0">
+        <div class="container py-5 pt-lg-0">
+            <div class="row gx-0 shadow-lg rounded-3 overflow-hidden">
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                    <div class="bg-white d-flex align-items-center h-100 p-4 border-end" style="min-height: 160px;">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light me-3">
+                                <i class="fa fa-cubes text-primary fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1 fw-bold">Katalog Stok Real-Time</h5>
+                                <span class="text-muted small">Cek ketersediaan dan spesifikasi alat langsung tanpa perlu antre ke laboratorium.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                    <div class="bg-white d-flex align-items-center h-100 p-4 border-end" style="min-height: 160px;">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light me-3">
+                                <i class="fa fa-check-double text-primary fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1 fw-bold">Persetujuan Cepat (Approval)</h5>
+                                <span class="text-muted small">Petugas Lab dapat meninjau, menyetujui, atau menolak pengajuan secara instan.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="bg-white d-flex align-items-center h-100 p-4" style="min-height: 160px;">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-shrink-0 btn-lg-square rounded-circle bg-light me-3">
+                                <i class="fa fa-file-invoice-dollar text-primary fa-2x"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1 fw-bold">Cetak Bukti Digital (PDF)</h5>
+                                <span class="text-muted small">Struk bukti peminjaman digital resmi ber-ID unik untuk pengambilan alat di lab.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Top Feature End -->
+
+
+    <!-- About Start (Latar Belakang & Masalah vs Tujuan Aplikasi) -->
+    <div class="container-xxl py-5" id="tentang">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="position-relative ps-5 pt-5">
+                        <div class="bg-primary text-white p-4 rounded-3 shadow position-absolute top-0 start-0" style="z-index: 2; width: 170px;">
+                            <h2 class="display-5 text-white mb-0 fw-bold">100%</h2>
+                            <small class="fw-semi-bold">Digital &amp; Paperless System</small>
+                        </div>
+                        <img class="img-fluid rounded-3 shadow-sm border" src="{{ asset('img/about.jpg') }}" alt="Laboratorium Kampus">
+                        <div class="bg-white p-3 rounded shadow position-absolute bottom-0 end-0 border" style="max-width: 260px;">
+                            <div class="d-flex align-items-center">
+                                <i class="fa fa-shield-alt text-primary fa-2x me-3"></i>
+                                <div>
+                                    <h6 class="mb-0 fw-bold">SiLab Verified</h6>
+                                    <small class="text-muted">Akurasi Status Terjamin</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.3s">
+                    <p class="fs-5 fw-bold text-primary mb-1">LATAR BELAKANG &amp; SOLUSI SILAB</p>
+                    <h1 class="display-6 mb-4 fw-bold">Transformasi Manajemen Inventaris Alat Lab yang Praktis &amp; Terpadu</h1>
+                    
+                    <!-- Box Masalah -->
+                    <div class="alert alert-danger bg-light border-danger border-start border-4 rounded-3 p-3 mb-4">
+                        <h6 class="fw-bold text-danger mb-2"><i class="fa fa-exclamation-triangle me-2"></i>Tantangan &amp; Masalah Sebelumnya:</h6>
+                        <ul class="mb-0 text-muted small ps-3">
+                            <li class="mb-1"><strong>Pencatatan Manual:</strong> Masih menggunakan buku besar dan formulir kertas yang rawan robek, tercecer, dan hilang.</li>
+                            <li class="mb-1"><strong>Kerancuan Status Alat:</strong> Sering tidak jelas apakah alat sedang rusak, hilang, atau sedang dipinjam oleh mahasiswa lain.</li>
+                            <li><strong>Pelacakan Histori Lemah:</strong> Petugas lab kesulitan melacak riwayat peminjaman dan mendeteksi keterlambatan pengembalian alat.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Box Tujuan & Solusi -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start">
+                                <div class="btn-square bg-light rounded-circle me-3 flex-shrink-0">
+                                    <i class="fa fa-check text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Digitalisasi Pengajuan</h6>
+                                    <p class="text-muted small mb-0">Formulir online terpusat dengan persetujuan 1 klik dari Petugas Lab.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start">
+                                <div class="btn-square bg-light rounded-circle me-3 flex-shrink-0">
+                                    <i class="fa fa-check text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Katalog Real-Time</h6>
+                                    <p class="text-muted small mb-0">Ketersediaan alat dan spesifikasi teknis selalu diperbarui setiap saat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start">
+                                <div class="btn-square bg-light rounded-circle me-3 flex-shrink-0">
+                                    <i class="fa fa-check text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Monitoring &amp; Rekap Stok</h6>
+                                    <p class="text-muted small mb-0">Memudahkan petugas mengontrol inventaris dan membuat laporan peminjaman.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="d-flex align-items-start">
+                                <div class="btn-square bg-light rounded-circle me-3 flex-shrink-0">
+                                    <i class="fa fa-check text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Bukti Digital (PDF)</h6>
+                                    <p class="text-muted small mb-0">Struk peminjaman terverifikasi resmi untuk pengambilan &amp; pengembalian.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="btn btn-primary py-3 px-4 rounded-pill fw-bold" href="#katalog">
+                        <i class="fa fa-search me-2"></i>Eksplorasi Katalog Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Facts Start (Statistik Inventaris Lab) -->
+    <div class="container-fluid facts my-5 py-5" data-parallax="scroll" data-image-src="{{ asset('img/carousel-1.jpg') }}">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
+                    <h1 class="display-4 text-white" data-toggle="counter-up">150</h1>
+                    <span class="fs-5 fw-semi-bold text-light">Total Alat Lab</span>
+                </div>
+                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
+                    <h1 class="display-4 text-white" data-toggle="counter-up">3</h1>
+                    <span class="fs-5 fw-semi-bold text-light">Kategori Alat Utama</span>
+                </div>
+                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
+                    <h1 class="display-4 text-white" data-toggle="counter-up">1250</h1>
+                    <span class="fs-5 fw-semi-bold text-light">Peminjaman Selesai</span>
+                </div>
+                <div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
+                    <h1 class="display-4 text-white" data-toggle="counter-up">100</h1>
+                    <span class="fs-5 fw-semi-bold text-light">% Riwayat Terekam</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Facts End -->
+
+
+    <!-- User Roles Start (Target Pengguna) -->
+    <div class="container-xxl py-5" id="roles">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <p class="fs-5 fw-bold text-primary mb-1">TARGET PENGGUNA (USER ROLES)</p>
+                <h1 class="display-6 mb-5 fw-bold">Hak Akses &amp; Fitur Terbagi untuk Dua Peran Utama</h1>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <!-- Role 1: Admin (Petugas Lab) -->
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="card h-100 border-0 shadow-sm rounded-3 p-4 border-top border-4 border-primary">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="btn-square bg-light rounded-circle me-3" style="width: 65px; height: 65px;">
+                                <i class="fa fa-user-shield text-primary fa-2x"></i>
+                            </div>
+                            <div>
+                                <span class="badge bg-primary px-3 py-1 mb-1">HAK AKSES UTAMA</span>
+                                <h3 class="mb-0 fw-bold">1. Admin (Petugas Lab)</h3>
+                            </div>
+                        </div>
+                        <p class="text-muted">Petugas dan asisten laboratorium yang bertanggung jawab penuh terhadap integritas barang, validasi izin, dan rekapitulasi data laboratorium.</p>
+                        <div class="border-top pt-3">
+                            <h6 class="fw-bold mb-3 text-dark">Fitur &amp; Wewenang Petugas Lab:</h6>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2 d-flex align-items-center">
+                                    <i class="fa fa-check-circle text-success me-2"></i>
+                                    <span><strong>Master Data Alat:</strong> Menambah, mengedit, dan menghapus data alat.</span>
+                                </li>
+                                <li class="mb-2 d-flex align-items-center">
+                                    <i class="fa fa-check-circle text-success me-2"></i>
+                                    <span><strong>Verifikasi &amp; Approval:</strong> Menyetujui (Approve) atau Menolak (Reject) peminjaman.</span>
+                                </li>
+                                <li class="mb-2 d-flex align-items-center">
+                                    <i class="fa fa-check-circle text-success me-2"></i>
+                                    <span><strong>Pemeriksaan Pengembalian:</strong> Menilai kondisi barang kembali (Kondisi Baik / Rusak / Hilang).</span>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <i class="fa fa-check-circle text-success me-2"></i>
+                                    <span><strong>Laporan Riwayat:</strong> Rekap histori peminjaman &amp; pemantauan keterlambatan mahasiswa.</span>
+                                </li>
+                            </ul>
+                            <a href="{{ route('dashboard') }}" target="_blank" class="btn btn-outline-primary w-100 py-2 rounded-pill fw-bold">
+                                <i class="fa fa-tachometer-alt me-2"></i>Buka Dashboard Admin (Mazer Template)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 2: User (Mahasiswa) -->
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="card h-100 border-0 shadow-sm rounded-3 p-4 border-top border-4 border-success">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="btn-square bg-light rounded-circle me-3" style="width: 65px; height: 65px;">
+                                <i class="fa fa-user-graduate text-success fa-2x"></i>
+                            </div>
+                            <div>
+                                <span class="badge bg-success px-3 py-1 mb-1">PENGGUNA LAYANAN</span>
+                                <h3 class="mb-0 fw-bold">2. User (Mahasiswa)</h3>
+                            </div>
+                        </div>
+                        <p class="text-muted">Mahasiswa aktif yang memerlukan peralatan laboratorium untuk keperluan praktikum terjadwal, riset mandiri, tugas akhir, atau kompetisi kampus.</p>
+                        <div class="border-top pt-3">
+                            <h6 class="fw-bold mb-3 text-dark">Fitur &amp; Kemudahan Mahasiswa:</h6>
+                            <ul class="list-unstyled mb-4">
+                                <li class="mb-2 d-flex align-items-center">
+                                    <i class="fa fa-check-circle text-primary me-2"></i>
+                                    <span><strong>Katalog Terpadu:</strong> Melihat ketersediaan stok alat lab &amp; spesifikasi teknis.</span>
+                                </li>
+                                <li class="mb-2 d-flex align-items-center">
+                                    <i class="fa fa-check-circle text-primary me-2"></i>
+                                    <span><strong>Formulir Online:</strong> Mengajukan peminjaman dengan memilih tanggal pinjam &amp; kembali.</span>
+                                </li>
+                                <li class="mb-2 d-flex align-items-center">
+                                    <i class="fa fa-check-circle text-primary me-2"></i>
+                                    <span><strong>Dashboard Pribadi:</strong> Memantau status pengajuan (Pending, Approved, Selesai).</span>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <i class="fa fa-check-circle text-primary me-2"></i>
+                                    <span><strong>Cetak Bukti (PDF):</strong> Mengunduh bukti peminjaman resmi sebagai tanda terima lab.</span>
+                                </li>
+                            </ul>
+                            <a href="#form-pinjam" class="btn btn-success w-100 py-2 rounded-pill fw-bold text-white">
+                                <i class="fa fa-edit me-2"></i>Mulai Ajukan Peminjaman Online
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- User Roles End -->
+
+
+    <!-- Catalog Start (Katalog Alat & Filter Kategori) -->
+    <div class="container-xxl py-5" id="katalog">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <p class="fs-5 fw-bold text-primary mb-1">KATALOG ALAT &amp; FILTER KATEGORI</p>
+                <h1 class="display-6 mb-4 fw-bold">Ketersediaan Alat Laboratorium Real-Time</h1>
+                <p class="text-muted">Pilih kategori untuk melihat peralatan laboratorium yang siap dipinjam beserta spesifikasi teknis dan kondisi fisiknya.</p>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="row justify-content-center mb-4 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="col-12 text-center">
+                    <div class="filter-btn-group d-inline-flex flex-wrap justify-content-center p-2 bg-light rounded-pill border">
+                        <button class="btn active filter-btn" data-category="all">
+                            <i class="fa fa-layer-group me-1"></i> Semua Alat
+                        </button>
+                        <button class="btn filter-btn" data-category="elektronik">
+                            <i class="fa fa-bolt me-1"></i> Alat Elektronik
+                        </button>
+                        <button class="btn filter-btn" data-category="sensor">
+                            <i class="fa fa-microchip me-1"></i> Sensor &amp; Modul
+                        </button>
+                        <button class="btn filter-btn" data-category="handheld">
+                            <i class="fa fa-tools me-1"></i> Tools Handheld
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid Items -->
+            <div class="row g-4" id="toolGrid">
+                
+                <!-- 1. Oscilloscope -->
+                <div class="col-lg-4 col-md-6 tool-item elektronik wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="{{ asset('img/lab-oscilloscope.svg') }}" alt="Digital Oscilloscope">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 6 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-light text-primary border">Alat Elektronik</span>
+                                <small class="text-muted fw-bold">Kode: ELK-OSC-01</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Oscilloscope Digital 100MHz</h5>
+                            <p class="text-muted small mb-3 flex-grow-1">4 Channel Digital Storage Oscilloscope dengan bandwidth 100MHz, real-time sample rate 1GSa/s, dan USB logging.</p>
+                            <div class="d-flex gap-2 pt-2 border-top">
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill flex-fill btn-detail" 
+                                    data-name="Oscilloscope Digital 100MHz" 
+                                    data-code="ELK-OSC-01" 
+                                    data-cat="Alat Elektronik" 
+                                    data-stock="6 Unit" 
+                                    data-spec="Bandwidth: 100MHz | 4 Channel | Sample Rate: 1GSa/s | Layar 7 Inch TFT | Auto-measure 24 Parameter | Interface USB &amp; LAN" 
+                                    data-sop="Gunakan probe 10X untuk sinyal di atas 20V. Hindari ground loop pada channel independen.">
+                                    <i class="fa fa-info-circle me-1"></i>Detail
+                                </button>
+                                <button class="btn btn-primary btn-sm rounded-pill flex-fill btn-book" data-tool="Oscilloscope Digital 100MHz (ELK-OSC-01)">
+                                    <i class="fa fa-hand-holding me-1"></i>Pinjam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Function Generator -->
+                <div class="col-lg-4 col-md-6 tool-item elektronik wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="{{ asset('img/lab-func-gen.svg') }}" alt="Function Generator">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 4 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-light text-primary border">Alat Elektronik</span>
+                                <small class="text-muted fw-bold">Kode: ELK-GEN-02</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Function Generator DDS 25MHz</h5>
+                            <p class="text-muted small mb-3 flex-grow-1">Dual-channel Arbitrary Waveform Generator dengan modulasi sinyal Sinus, Kotak, Segitiga, dan Pulsa.</p>
+                            <div class="d-flex gap-2 pt-2 border-top">
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill flex-fill btn-detail" 
+                                    data-name="Function Generator DDS 25MHz" 
+                                    data-code="ELK-GEN-02" 
+                                    data-cat="Alat Elektronik" 
+                                    data-stock="4 Unit" 
+                                    data-spec="Frekuensi Maksimal: 25MHz | 2 Output Channel | Resolusi Vertikal: 14 bits | Modulasi AM, FM, PM, FSK, PWM | Output Impedance 50 Ohm" 
+                                    data-sop="Pastikan terminal output tidak dihubungkan ke sumber tegangan eksternal aktif tanpa perlindungan coupling.">
+                                    <i class="fa fa-info-circle me-1"></i>Detail
+                                </button>
+                                <button class="btn btn-primary btn-sm rounded-pill flex-fill btn-book" data-tool="Function Generator DDS 25MHz (ELK-GEN-02)">
+                                    <i class="fa fa-hand-holding me-1"></i>Pinjam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Multimeter Digital -->
+                <div class="col-lg-4 col-md-6 tool-item elektronik wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="{{ asset('img/lab-multimeter.svg') }}" alt="Digital Multimeter">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 12 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-light text-primary border">Alat Elektronik</span>
+                                <small class="text-muted fw-bold">Kode: ELK-DMM-03</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Digital Multimeter True RMS</h5>
+                            <p class="text-muted small mb-3 flex-grow-1">Pengukur presisi tinggi Auto-Ranging untuk Tegangan AC/DC, Arus hingga 10A, Hambatan, Kapasitansi, dan Kontinuitas.</p>
+                            <div class="d-flex gap-2 pt-2 border-top">
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill flex-fill btn-detail" 
+                                    data-name="Digital Multimeter True RMS" 
+                                    data-code="ELK-DMM-03" 
+                                    data-cat="Alat Elektronik" 
+                                    data-stock="12 Unit" 
+                                    data-spec="Rentang: 6000 Counts | Auto-Ranging True RMS | Pengujian Dioda, Kapasitor &amp; Suhu | Perlindungan Sekering Keramik 10A" 
+                                    data-sop="Selalu periksa posisi selector jack sebelum mengukur tegangan agar tidak terjadi hubungan arus pendek.">
+                                    <i class="fa fa-info-circle me-1"></i>Detail
+                                </button>
+                                <button class="btn btn-primary btn-sm rounded-pill flex-fill btn-book" data-tool="Digital Multimeter True RMS (ELK-DMM-03)">
+                                    <i class="fa fa-hand-holding me-1"></i>Pinjam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. DC Power Supply -->
+                <div class="col-lg-4 col-md-6 tool-item elektronik wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="{{ asset('img/lab-power-supply.svg') }}" alt="DC Power Supply">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 8 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-light text-primary border">Alat Elektronik</span>
+                                <small class="text-muted fw-bold">Kode: ELK-PWR-04</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">DC Regulated Power Supply 30V 5A</h5>
+                            <p class="text-muted small mb-3 flex-grow-1">Catu daya laboratorium linear teregulasi dengan proteksi Over Voltage (OVP) dan Over Current (OCP).</p>
+                            <div class="d-flex gap-2 pt-2 border-top">
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill flex-fill btn-detail" 
+                                    data-name="DC Regulated Power Supply 30V 5A" 
+                                    data-code="ELK-PWR-04" 
+                                    data-cat="Alat Elektronik" 
+                                    data-stock="8 Unit" 
+                                    data-spec="Output: 0 - 30V DC Terkendali | Arus: 0 - 5A | Display Digital 4 Digit V &amp; A | Knob Coarse &amp; Fine | OVP &amp; OCP Protection" 
+                                    data-sop="Setel batas arus (current limit) ke minimum sebelum menghidupkan beban rangkaian elektronik yang sensitif.">
+                                    <i class="fa fa-info-circle me-1"></i>Detail
+                                </button>
+                                <button class="btn btn-primary btn-sm rounded-pill flex-fill btn-book" data-tool="DC Regulated Power Supply 30V 5A (ELK-PWR-04)">
+                                    <i class="fa fa-hand-holding me-1"></i>Pinjam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Sensor Ultrasonik -->
+                <div class="col-lg-4 col-md-6 tool-item sensor wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="{{ asset('img/lab-ultrasonic.svg') }}" alt="Ultrasonic Sensor">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 25 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-light text-primary border">Sensor &amp; Modul</span>
+                                <small class="text-muted fw-bold">Kode: SNS-ULT-01</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Sensor Ultrasonik HC-SR04</h5>
+                            <p class="text-muted small mb-3 flex-grow-1">Modul sensor jarak sonar non-kontak dengan rentang ukur 2 cm hingga 400 cm untuk mikrokontroler &amp; IoT.</p>
+                            <div class="d-flex gap-2 pt-2 border-top">
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill flex-fill btn-detail" 
+                                    data-name="Sensor Ultrasonik HC-SR04" 
+                                    data-code="SNS-ULT-01" 
+                                    data-cat="Sensor &amp; Modul" 
+                                    data-stock="25 Unit" 
+                                    data-spec="Tegangan Operasi: 5V DC | Sudut Pengukuran: 15 Derajat | Jangkauan: 2cm - 400cm | Resolusi: 0.3cm | Pinout: VCC, Trig, Echo, GND" 
+                                    data-sop="Pastikan tegangan VCC tidak melebihi 5.5V untuk menjaga keawetan kristal transduser piezoelektrik.">
+                                    <i class="fa fa-info-circle me-1"></i>Detail
+                                </button>
+                                <button class="btn btn-primary btn-sm rounded-pill flex-fill btn-book" data-tool="Sensor Ultrasonik HC-SR04 (SNS-ULT-01)">
+                                    <i class="fa fa-hand-holding me-1"></i>Pinjam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Sensor MPU6050 -->
+                <div class="col-lg-4 col-md-6 tool-item sensor wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="{{ asset('img/lab-mpu6050.svg') }}" alt="MPU-6050 Sensor">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 18 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-light text-primary border">Sensor &amp; Modul</span>
+                                <small class="text-muted fw-bold">Kode: SNS-MPU-02</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Gyroscope &amp; Accelerometer MPU-6050</h5>
+                            <p class="text-muted small mb-3 flex-grow-1">Sensor orientasi 6-DOF (3-Axis Gyro + 3-Axis Accel) dengan protokol komunikasi digital I2C terintegrasi.</p>
+                            <div class="d-flex gap-2 pt-2 border-top">
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill flex-fill btn-detail" 
+                                    data-name="Gyroscope &amp; Accelerometer MPU-6050" 
+                                    data-code="SNS-MPU-02" 
+                                    data-cat="Sensor &amp; Modul" 
+                                    data-stock="18 Unit" 
+                                    data-spec="Chip: MPU-6050 | Komunikasi: I2C (SDA, SCL) | Gyro Range: ±250, 500, 1000, 2000 °/s | Accel Range: ±2g, ±4g, ±8g, ±16g | DMP On-Chip" 
+                                    data-sop="Pemasangan kabel jumper jangan sampai tertukar antara VCC (3.3V/5V) dan GND.">
+                                    <i class="fa fa-info-circle me-1"></i>Detail
+                                </button>
+                                <button class="btn btn-primary btn-sm rounded-pill flex-fill btn-book" data-tool="Gyroscope &amp; Accelerometer MPU-6050 (SNS-MPU-02)">
+                                    <i class="fa fa-hand-holding me-1"></i>Pinjam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Sensor DHT22 -->
+                <div class="col-lg-4 col-md-6 tool-item sensor wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="{{ asset('img/lab-dht22.svg') }}" alt="DHT22 Sensor">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 20 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-light text-primary border">Sensor &amp; Modul</span>
+                                <small class="text-muted fw-bold">Kode: SNS-DHT-03</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Sensor Suhu &amp; Kelembaban DHT22</h5>
+                            <p class="text-muted small mb-3 flex-grow-1">Sensor digital AM2302 presisi tinggi untuk monitoring cuaca dan lingkungan ruangan praktikum.</p>
+                            <div class="d-flex gap-2 pt-2 border-top">
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill flex-fill btn-detail" 
+                                    data-name="Sensor Suhu &amp; Kelembaban DHT22" 
+                                    data-code="SNS-DHT-03" 
+                                    data-cat="Sensor &amp; Modul" 
+                                    data-stock="20 Unit" 
+                                    data-spec="Rentang Suhu: -40 hingga 80°C (akurasi ±0.5°C) | Kelembaban: 0 - 100% RH (akurasi ±2%) | Sampling Rate: 0.5Hz (setiap 2 detik)" 
+                                    data-sop="Tambahkan resistor pull-up 4.7k - 10k Ohm antara pin Data dan VCC jika modul tanpa breakout board.">
+                                    <i class="fa fa-info-circle me-1"></i>Detail
+                                </button>
+                                <button class="btn btn-primary btn-sm rounded-pill flex-fill btn-book" data-tool="Sensor Suhu &amp; Kelembaban DHT22 (SNS-DHT-03)">
+                                    <i class="fa fa-hand-holding me-1"></i>Pinjam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Sensor MQ-2 -->
+                <div class="col-lg-4 col-md-6 tool-item sensor wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="{{ asset('img/lab-mq2.svg') }}" alt="MQ-2 Gas Sensor">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 15 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-light text-primary border">Sensor &amp; Modul</span>
+                                <small class="text-muted fw-bold">Kode: SNS-MQ2-04</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Sensor Gas &amp; Asap MQ-2</h5>
+                            <p class="text-muted small mb-3 flex-grow-1">Sensor elektrokimia sensitif terhadap gas LPG, propana, metana, alkohol, hidrogen, dan asap.</p>
+                            <div class="d-flex gap-2 pt-2 border-top">
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill flex-fill btn-detail" 
+                                    data-name="Sensor Gas &amp; Asap MQ-2" 
+                                    data-code="SNS-MQ2-04" 
+                                    data-cat="Sensor &amp; Modul" 
+                                    data-stock="15 Unit" 
+                                    data-spec="Deteksi: LPG, Butana, Metana, Alkohol, Asap | Dual Output: Analog (AO) &amp; Digital (DO) | Pemanas Internal: 5V DC | Trimpot Threshold" 
+                                    data-sop="Perangkat membutuhkan pemanasan awal (preheating) sekitar 20-30 detik sebelum pembacaan stabil.">
+                                    <i class="fa fa-info-circle me-1"></i>Detail
+                                </button>
+                                <button class="btn btn-primary btn-sm rounded-pill flex-fill btn-book" data-tool="Sensor Gas &amp; Asap MQ-2 (SNS-MQ2-04)">
+                                    <i class="fa fa-hand-holding me-1"></i>Pinjam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. Solder Station -->
+                <div class="col-lg-4 col-md-6 tool-item handheld wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="{{ asset('img/lab-soldering.svg') }}" alt="Soldering Station">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 10 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-light text-primary border">Tools Handheld</span>
+                                <small class="text-muted fw-bold">Kode: TLS-SLD-01</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Digital Soldering Station ESD 60W</h5>
+                            <p class="text-muted small mb-3 flex-grow-1">Stasiun solder digital anti-statis (ESD-safe) dengan pengatur suhu presisi 200°C - 480°C dan auto-sleep.</p>
+                            <div class="d-flex gap-2 pt-2 border-top">
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill flex-fill btn-detail" 
+                                    data-name="Digital Soldering Station ESD 60W" 
+                                    data-code="TLS-SLD-01" 
+                                    data-cat="Tools Handheld" 
+                                    data-stock="10 Unit" 
+                                    data-spec="Daya: 60 Watt | Temperatur: 200°C - 480°C | Display LED Digital | Elemen Keramik Cepat Panas | Dudukan Logam + Spons Pembersih" 
+                                    data-sop="Gunakan kacamata pelindung dan selalu bersihkan ujung mata solder dengan spons basah sebelum dimatikan.">
+                                    <i class="fa fa-info-circle me-1"></i>Detail
+                                </button>
+                                <button class="btn btn-primary btn-sm rounded-pill flex-fill btn-book" data-tool="Digital Soldering Station ESD 60W (TLS-SLD-01)">
+                                    <i class="fa fa-hand-holding me-1"></i>Pinjam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Crimping Tool Kit -->
+                <div class="col-lg-4 col-md-6 tool-item handheld wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="{{ asset('img/lab-crimping.svg') }}" alt="Crimping Tool Kit">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 7 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-light text-primary border">Tools Handheld</span>
+                                <small class="text-muted fw-bold">Kode: TLS-CRP-02</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Crimping Tool Kit RJ45/RJ11</h5>
+                            <p class="text-muted small mb-3 flex-grow-1">Tang crimping jaringan multifungsi lengkap dengan pemotong kabel, stripper, dan LAN Cable Tester digital.</p>
+                            <div class="d-flex gap-2 pt-2 border-top">
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill flex-fill btn-detail" 
+                                    data-name="Crimping Tool Kit RJ45/RJ11" 
+                                    data-code="TLS-CRP-02" 
+                                    data-cat="Tools Handheld" 
+                                    data-stock="7 Unit" 
+                                    data-spec="Kompatibilitas: RJ45 (8P8C), RJ12 (6P6C), RJ11 (6P4C) | Material: Carbon Steel Berat Presisi | Termasuk: Cable Tester RJ45 &amp; Wire Stripper" 
+                                    data-sop="Pastikan urutan standar kabel (T568A / T568B) telah benar sebelum menekan tang crimping hingga bunyi klik.">
+                                    <i class="fa fa-info-circle me-1"></i>Detail
+                                </button>
+                                <button class="btn btn-primary btn-sm rounded-pill flex-fill btn-book" data-tool="Crimping Tool Kit RJ45/RJ11 (TLS-CRP-02)">
+                                    <i class="fa fa-hand-holding me-1"></i>Pinjam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11. Wire Stripper -->
+                <div class="col-lg-4 col-md-6 tool-item handheld wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="{{ asset('img/lab-stripper.svg') }}" alt="Wire Stripper">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 14 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-light text-primary border">Tools Handheld</span>
+                                <small class="text-muted fw-bold">Kode: TLS-WST-03</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Precision Wire Stripper Pro</h5>
+                            <p class="text-muted small mb-3 flex-grow-1">Tang pengupas kawat berpresisi tinggi dengan mata pisau gerigi multi-gauge tanpa merusak serat kawat tembaga.</p>
+                            <div class="d-flex gap-2 pt-2 border-top">
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill flex-fill btn-detail" 
+                                    data-name="Precision Wire Stripper Pro" 
+                                    data-code="TLS-WST-03" 
+                                    data-cat="Tools Handheld" 
+                                    data-stock="14 Unit" 
+                                    data-spec="Ukuran AWG: 10, 12, 14, 16, 18, 20, 22 | Gagang Karet Ergonomis Anti Selip | Spring-Action Rebound Otomatis | Safety Lock" 
+                                    data-sop="Sesuaikan lubang pengupas dengan nomor diameter kawat agar inti tembaga tidak patah.">
+                                    <i class="fa fa-info-circle me-1"></i>Detail
+                                </button>
+                                <button class="btn btn-primary btn-sm rounded-pill flex-fill btn-book" data-tool="Precision Wire Stripper Pro (TLS-WST-03)">
+                                    <i class="fa fa-hand-holding me-1"></i>Pinjam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12. Logic Analyzer -->
+                <div class="col-lg-4 col-md-6 tool-item handheld wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="lab-card shadow-sm h-100 d-flex flex-column">
+                        <div class="lab-img-wrapper">
+                            <img src="{{ asset('img/lab-logic-analyzer.svg') }}" alt="Logic Analyzer">
+                            <span class="badge badge-available position-absolute top-0 end-0 m-3">
+                                <i class="fa fa-check-circle me-1"></i>Tersedia: 5 Unit
+                            </span>
+                        </div>
+                        <div class="p-4 d-flex flex-column flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-light text-primary border">Tools Handheld</span>
+                                <small class="text-muted fw-bold">Kode: TLS-LGC-04</small>
+                            </div>
+                            <h5 class="fw-bold mb-2">Logic Analyzer 24MHz 8CH USB</h5>
+                            <p class="text-muted small mb-3 flex-grow-1">Penganalisis logika sinyal digital portabel untuk mendeteksi protokol I2C, SPI, UART, CAN, dan PWM di PC.</p>
+                            <div class="d-flex gap-2 pt-2 border-top">
+                                <button class="btn btn-outline-secondary btn-sm rounded-pill flex-fill btn-detail" 
+                                    data-name="Logic Analyzer 24MHz 8CH USB" 
+                                    data-code="TLS-LGC-04" 
+                                    data-cat="Tools Handheld" 
+                                    data-stock="5 Unit" 
+                                    data-spec="8 Channel Digital | Sampling: 24MHz | Decoding Protokol: UART, I2C, SPI, 1-Wire, CAN | Koneksi: USB 2.0 | Kompatibel PulseView/Sigrok" 
+                                    data-sop="Tegangan input logika maksimal 5.25V TTL/CMOS. Gunakan jumper clip hook dengan hati-hati.">
+                                    <i class="fa fa-info-circle me-1"></i>Detail
+                                </button>
+                                <button class="btn btn-primary btn-sm rounded-pill flex-fill btn-book" data-tool="Logic Analyzer 24MHz 8CH USB (TLS-LGC-04)">
+                                    <i class="fa fa-hand-holding me-1"></i>Pinjam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Catalog End -->
+
+
+    <!-- Workflow / Alur Peminjaman Start -->
+    <div class="container-xxl py-5 bg-light" id="alur">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <p class="fs-5 fw-bold text-primary mb-1">PROSEDUR RESMI</p>
+                <h1 class="display-6 mb-4 fw-bold">5 Langkah Praktis Peminjaman Alat di SiLab</h1>
+                <p class="text-muted">Proses pengajuan hingga pengembalian dilakukan secara terstruktur, terdokumentasi, dan transparan.</p>
+            </div>
+            <div class="row g-4 mt-2">
+                <!-- Step 1 -->
+                <div class="col-lg col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="step-box text-center">
+                        <div class="step-number mx-auto">1</div>
+                        <h6 class="fw-bold mb-2">Pilih Alat</h6>
+                        <p class="text-muted small mb-0">Eksplorasi katalog real-time dan pastikan ketersediaan stok alat di laboratorium.</p>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="col-lg col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="step-box text-center">
+                        <div class="step-number mx-auto">2</div>
+                        <h6 class="fw-bold mb-2">Isi Formulir</h6>
+                        <p class="text-muted small mb-0">Masukkan data diri (NIM, Prodi), tanggal peminjaman &amp; pengembalian serta keperluannya.</p>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="col-lg col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="step-box text-center">
+                        <div class="step-number mx-auto">3</div>
+                        <h6 class="fw-bold mb-2">Persetujuan Lab</h6>
+                        <p class="text-muted small mb-0">Petugas laboratorium meninjau pengajuan dan memberikan persetujuan (Approve) di sistem.</p>
+                    </div>
+                </div>
+                <!-- Step 4 -->
+                <div class="col-lg col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="step-box text-center">
+                        <div class="step-number mx-auto">4</div>
+                        <h6 class="fw-bold mb-2">Cetak Bukti (PDF)</h6>
+                        <p class="text-muted small mb-0">Unduh atau cetak struk tanda terima resmi ber-ID unik untuk pengambilan alat.</p>
+                    </div>
+                </div>
+                <!-- Step 5 -->
+                <div class="col-lg col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="step-box text-center">
+                        <div class="step-number mx-auto">5</div>
+                        <h6 class="fw-bold mb-2">Ambil &amp; Kembali</h6>
+                        <p class="text-muted small mb-0">Ambil alat di ruang lab. Kembalikan tepat waktu dengan verifikasi kondisi fisik (Baik/Rusak).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Workflow End -->
+
+
+    <!-- Loan Form Section Start (Pengajuan Peminjaman Interaktif) -->
+    <div class="container-fluid quote my-5 py-5" id="form-pinjam" data-parallax="scroll" data-image-src="{{ asset('img/carousel-2.jpg') }}">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="bg-white rounded-3 p-4 p-sm-5 shadow-lg wow fadeIn" data-wow-delay="0.3s">
+                        <div class="text-center mb-4">
+                            <span class="badge bg-primary px-3 py-2 rounded-pill mb-2"><i class="fa fa-file-signature me-1"></i> FORMULIR ONLINE</span>
+                            <h2 class="display-6 fw-bold mb-1">Pengajuan Peminjaman Alat Lab</h2>
+                            <p class="text-muted small">Lengkapi data berikut untuk mengajukan permohonan peminjaman. Bukti tanda terima digital (PDF) akan dibuat secara otomatis.</p>
+                        </div>
+                        
+                        <form id="loanForm">
+                            <div class="row g-3">
+                                <!-- Nama -->
+                                <div class="col-sm-6">
+                                    <label class="form-label small fw-bold text-muted">Nama Lengkap Mahasiswa *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="fa fa-user text-primary"></i></span>
+                                        <input type="text" class="form-control bg-light" id="studentName" placeholder="Contoh: Firli Aditia" required>
+                                    </div>
+                                </div>
+                                <!-- NIM -->
+                                <div class="col-sm-6">
+                                    <label class="form-label small fw-bold text-muted">Nomor Induk Mahasiswa (NIM) *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="fa fa-id-card text-primary"></i></span>
+                                        <input type="text" class="form-control bg-light" id="studentNim" placeholder="Contoh: 230102045" required>
+                                    </div>
+                                </div>
+                                <!-- Program Studi -->
+                                <div class="col-sm-6">
+                                    <label class="form-label small fw-bold text-muted">Program Studi / Jurusan *</label>
+                                    <select class="form-select bg-light" id="studentMajor" required>
+                                        <option value="" selected disabled>Pilih Program Studi...</option>
+                                        <option value="Teknik Informatika">Teknik Informatika</option>
+                                        <option value="Sistem Informasi">Sistem Informasi</option>
+                                        <option value="Teknik Elektro">Teknik Elektro</option>
+                                        <option value="Teknik Komputer">Teknik Komputer</option>
+                                        <option value="Teknologi Rekayasa Otomasi">Teknologi Rekayasa Otomasi</option>
+                                    </select>
+                                </div>
+                                <!-- No Kontak -->
+                                <div class="col-sm-6">
+                                    <label class="form-label small fw-bold text-muted">Nomor WhatsApp / Kontak *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="fab fa-whatsapp text-success"></i></span>
+                                        <input type="tel" class="form-control bg-light" id="studentPhone" placeholder="0812-xxxx-xxxx" required>
+                                    </div>
+                                </div>
+
+                                <!-- Pilihan Alat -->
+                                <div class="col-sm-8">
+                                    <label class="form-label small fw-bold text-muted">Pilih Alat Laboratorium *</label>
+                                    <select class="form-select bg-light" id="selectedTool" required>
+                                        <option value="" selected disabled>-- Pilih Alat Dari Katalog --</option>
+                                        <optgroup label="Alat Elektronik">
+                                            <option value="Oscilloscope Digital 100MHz (ELK-OSC-01)">Oscilloscope Digital 100MHz (ELK-OSC-01)</option>
+                                            <option value="Function Generator DDS 25MHz (ELK-GEN-02)">Function Generator DDS 25MHz (ELK-GEN-02)</option>
+                                            <option value="Digital Multimeter True RMS (ELK-DMM-03)">Digital Multimeter True RMS (ELK-DMM-03)</option>
+                                            <option value="DC Regulated Power Supply 30V 5A (ELK-PWR-04)">DC Regulated Power Supply 30V 5A (ELK-PWR-04)</option>
+                                        </optgroup>
+                                        <optgroup label="Sensor &amp; Modul">
+                                            <option value="Sensor Ultrasonik HC-SR04 (SNS-ULT-01)">Sensor Ultrasonik HC-SR04 (SNS-ULT-01)</option>
+                                            <option value="Gyroscope &amp; Accelerometer MPU-6050 (SNS-MPU-02)">Gyroscope &amp; Accelerometer MPU-6050 (SNS-MPU-02)</option>
+                                            <option value="Sensor Suhu &amp; Kelembaban DHT22 (SNS-DHT-03)">Sensor Suhu &amp; Kelembaban DHT22 (SNS-DHT-03)</option>
+                                            <option value="Sensor Gas &amp; Asap MQ-2 (SNS-MQ2-04)">Sensor Gas &amp; Asap MQ-2 (SNS-MQ2-04)</option>
+                                        </optgroup>
+                                        <optgroup label="Tools Handheld">
+                                            <option value="Digital Soldering Station ESD 60W (TLS-SLD-01)">Digital Soldering Station ESD 60W (TLS-SLD-01)</option>
+                                            <option value="Crimping Tool Kit RJ45/RJ11 (TLS-CRP-02)">Crimping Tool Kit RJ45/RJ11 (TLS-CRP-02)</option>
+                                            <option value="Precision Wire Stripper Pro (TLS-WST-03)">Precision Wire Stripper Pro (TLS-WST-03)</option>
+                                            <option value="Logic Analyzer 24MHz 8CH USB (TLS-LGC-04)">Logic Analyzer 24MHz 8CH USB (TLS-LGC-04)</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <!-- Jumlah Unit -->
+                                <div class="col-sm-4">
+                                    <label class="form-label small fw-bold text-muted">Jumlah Unit *</label>
+                                    <input type="number" class="form-control bg-light" id="toolQty" value="1" min="1" max="5" required>
+                                </div>
+
+                                <!-- Tanggal Pinjam -->
+                                <div class="col-sm-6">
+                                    <label class="form-label small fw-bold text-muted">Tanggal Peminjaman *</label>
+                                    <input type="date" class="form-control bg-light" id="startDate" required>
+                                </div>
+                                <!-- Tanggal Kembali -->
+                                <div class="col-sm-6">
+                                    <label class="form-label small fw-bold text-muted">Tanggal Pengembalian *</label>
+                                    <input type="date" class="form-control bg-light" id="endDate" required>
+                                </div>
+
+                                <!-- Keperluan Peminjaman -->
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold text-muted">Keperluan Peminjaman *</label>
+                                    <select class="form-select bg-light" id="loanPurpose" required>
+                                        <option value="" selected disabled>Pilih Keperluan...</option>
+                                        <option value="Praktikum Terjadwal Kampus">Praktikum Terjadwal Kampus</option>
+                                        <option value="Tugas Akhir / Skripsi / Proyek Capstone">Tugas Akhir / Skripsi / Proyek Capstone</option>
+                                        <option value="Riset Laboratorium &amp; Proyek Dosen">Riset Laboratorium &amp; Proyek Dosen</option>
+                                        <option value="Perlombaan / Lomba Inovasi Mahasiswa">Perlombaan / Lomba Inovasi Mahasiswa</option>
+                                        <option value="Kegiatan Organisasi Kemahasiswaan">Kegiatan Organisasi Kemahasiswaan</option>
+                                    </select>
+                                </div>
+
+                                <!-- Catatan / Keterangan -->
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold text-muted">Catatan Tambahan / Spesifikasi Khusus (Opsional)</label>
+                                    <textarea class="form-control bg-light" id="loanNotes" rows="2" placeholder="Contoh: Butuh kabel probe cadangan dan adaptor 12V"></textarea>
+                                </div>
+
+                                <!-- Terms Checkbox -->
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="termsCheck" required checked>
+                                        <label class="form-check-label small text-muted" for="termsCheck">
+                                            Saya bersedia menjaga keutuhan alat dan mengembalikan sesuai jadwal batas waktu peminjaman.
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="col-12 text-center mt-4">
+                                    <button class="btn btn-primary py-3 px-5 rounded-pill fw-bold shadow" type="submit">
+                                        <i class="fa fa-paper-plane me-2"></i>Kirim Pengajuan &amp; Cetak Bukti (PDF)
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Loan Form Section End -->
+
+
+    <!-- Testimonial Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
+                    <p class="fs-5 fw-bold text-primary mb-1">TESTIMONI CIVITAS</p>
+                    <h1 class="display-6 mb-4 fw-bold">Apa Kata Mahasiswa &amp; Asisten Lab Tentang SiLab?</h1>
+                    <p class="mb-4 text-muted">Pengalaman nyata penggunaan platform SiLab dalam mendukung praktikum, penugasan akhir, dan tertib administrasi alat di laboratorium kampus.</p>
+                    <div class="d-flex align-items-center">
+                        <div class="btn-square bg-primary rounded-circle me-3 text-white">
+                            <i class="fa fa-quote-left fa-lg"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 fw-bold">Efisien &amp; Terdokumentasi</h6>
+                            <small class="text-muted">Mencegah alat hilang dan sengketa waktu pinjam</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="owl-carousel testimonial-carousel">
+                        <div class="testimonial-item bg-light p-4 rounded-3 border">
+                            <p class="fs-6 text-muted mb-3">"Dulu saat mengerjakan Tugas Akhir sering bingung apakah osiloskop ada di lab atau dipinjam orang. Dengan SiLab, status barang terlihat real-time dan bukti struk PDF langsung keluar!"</p>
+                            <h6 class="fw-bold mb-0">Rangga Pratama</h6>
+                            <small class="text-primary">Mahasiswa Teknik Elektro (Angkatan 2023)</small>
+                        </div>
+                        <div class="testimonial-item bg-light p-4 rounded-3 border">
+                            <p class="fs-6 text-muted mb-3">"Sebagai asisten lab, kami sangat terbantu dalam memverifikasi kondisi barang saat kembali. Status alat rusak atau baik bisa langsung di-update di sistem tanpa coretan buku lagi."</p>
+                            <h6 class="fw-bold mb-0">Nadia Safitri, S.T.</h6>
+                            <small class="text-primary">Koordinator Asisten Lab Instrumentasi</small>
+                        </div>
+                        <div class="testimonial-item bg-light p-4 rounded-3 border">
+                            <p class="fs-6 text-muted mb-3">"Proses approval hanya butuh beberapa menit dari petugas lab. Kami bisa mencetak struk peminjaman dan langsung mengambil barang di meja sirkulasi."</p>
+                            <h6 class="fw-bold mb-0">Firli Aditia</h6>
+                            <small class="text-primary">Mahasiswa Praktikan PFW</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s" id="kontak">
+        <div class="container py-5">
+            <div class="row g-5">
+                <!-- Kolom 1: Profil SiLab -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="{{ asset('img/silab-logo.png') }}" alt="SiLab Logo" style="height: 48px; background: white; border-radius: 6px; padding: 4px;" class="me-2">
+                    </div>
+                    <h5 class="text-white mb-3">SiLab Kampus</h5>
+                    <p class="text-muted small">Sistem Informasi Inventaris &amp; Peminjaman Alat Laboratorium terintegrasi untuk mendukung kegiatan praktikum, penelitian, dan riset teknologi yang transparan.</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <!-- Kolom 2: Jam Operasional & Lokasi -->
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-white mb-4">Lokasi &amp; Jam Layanan</h5>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3 text-primary"></i>Gedung Laboratorium Terpadu, Lantai 2</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3 text-primary"></i>(021) 789-0123 / Ext. 204</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3 text-primary"></i>silab@kampus.ac.id</p>
+                    <div class="bg-secondary p-3 rounded mt-3 text-light small">
+                        <strong>Jam Buka Ruang Sirkulasi:</strong><br>
+                        Senin - Kamis : 08:00 - 16:00 WIB<br>
+                        Jumat : 08:00 - 16:30 WIB (Istirahat 11:30 - 13:00)
+                    </div>
+                </div>
+
+                <!-- Kolom 3: Tautan Cepat -->
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="text-white mb-4">Tautan Cepat</h5>
+                    <a class="btn btn-link" href="#tentang">Tentang SiLab</a>
+                    <a class="btn btn-link" href="#katalog">Katalog Alat Laboratorium</a>
+                    <a class="btn btn-link" href="#roles">Peran Mahasiswa &amp; Petugas</a>
+                    <a class="btn btn-link" href="#alur">Alur &amp; Prosedur Pinjam</a>
+                    <a class="btn btn-link" href="#form-pinjam">Formulir Peminjaman</a>
+                    <a class="btn btn-link" href="{{ route('dashboard') }}" target="_blank">Portal Admin Lab (Mazer)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; 2026 <a class="border-bottom text-white fw-bold" href="#">SiLab</a> - Sistem Informasi Inventaris &amp; Peminjaman Alat Lab. All Rights Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end text-muted small">
+                    Praktikum Pemrograman Framework (PFW) - Dosen &amp; Asisten Lab
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- =======================================================
+         MODAL 1: LOGIN / REGISTER PENGGUNA (MAHASISWA & ADMIN)
+         ======================================================= -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-3 shadow border-0">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <div class="d-flex align-items-center">
+                        <img src="{{ asset('img/silab-logo.png') }}" alt="SiLab" style="height: 38px;" class="me-2">
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 pt-2">
+                    <ul class="nav nav-pills nav-fill mb-3 bg-light p-1 rounded-pill" id="loginTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active rounded-pill fw-bold" id="mhs-tab" data-bs-toggle="pill" data-bs-target="#tab-mhs" type="button" role="tab">
+                                <i class="fa fa-user-graduate me-1"></i> Mahasiswa
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link rounded-pill fw-bold" id="admin-tab" data-bs-toggle="pill" data-bs-target="#tab-admin" type="button" role="tab">
+                                <i class="fa fa-user-shield me-1"></i> Petugas Lab
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link rounded-pill fw-bold" id="reg-tab" data-bs-toggle="pill" data-bs-target="#tab-reg" type="button" role="tab">
+                                <i class="fa fa-user-plus me-1"></i> Register
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="loginTabContent">
+                        <!-- Tab Mahasiswa -->
+                        <div class="tab-pane fade show active" id="tab-mhs" role="tabpanel">
+                            <div class="alert alert-info py-2 small mb-3">
+                                <i class="fa fa-info-circle me-1"></i> Masuk menggunakan NIM yang telah terdaftar di database kampus.
+                            </div>
+                            <form onsubmit="handleMhsLogin(event)">
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold">Nomor Induk Mahasiswa (NIM)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+                                        <input type="text" class="form-control" placeholder="Contoh: 230102045" value="230102045" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold">Kata Sandi (Password)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                        <input type="password" class="form-control" placeholder="••••••••" value="password123" required>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mb-3 small">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="rememberMhs" checked>
+                                        <label class="form-check-label" for="rememberMhs">Ingat Saya</label>
+                                    </div>
+                                    <a href="#" class="text-primary">Lupa Password?</a>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 fw-bold">
+                                    <i class="fa fa-sign-in-alt me-1"></i> Masuk Sebagai Mahasiswa
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Tab Petugas Lab (Admin) -->
+                        <div class="tab-pane fade" id="tab-admin" role="tabpanel">
+                            <div class="alert alert-warning py-2 small mb-3">
+                                <i class="fa fa-shield-alt me-1"></i> Khusus Petugas Lab &amp; Dosen Pengelola Laboratorium.
+                            </div>
+                            <form onsubmit="handleAdminLogin(event)">
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold">NIP / Email Petugas</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-user-cog"></i></span>
+                                        <input type="text" class="form-control" placeholder="admin@lab.kampus.ac.id" value="admin@lab.kampus.ac.id" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold">Kata Sandi</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fa fa-key"></i></span>
+                                        <input type="password" class="form-control" placeholder="••••••••" value="admin123" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-success w-100 rounded-pill py-2 fw-bold text-white mb-2">
+                                    <i class="fa fa-sign-in-alt me-1"></i> Masuk Dashboard Petugas Lab
+                                </button>
+                                <a href="{{ route('dashboard') }}" target="_blank" class="btn btn-outline-secondary btn-sm w-100 rounded-pill">
+                                    <i class="fa fa-external-link-alt me-1"></i> Langsung ke Template Admin (Mazer)
+                                </a>
+                            </form>
+                        </div>
+
+                        <!-- Tab Register -->
+                        <div class="tab-pane fade" id="tab-reg" role="tabpanel">
+                            <form onsubmit="handleRegister(event)">
+                                <div class="mb-2">
+                                    <label class="form-label small fw-bold">Nama Lengkap</label>
+                                    <input type="text" class="form-control" placeholder="Nama Mahasiswa" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small fw-bold">NIM</label>
+                                    <input type="text" class="form-control" placeholder="Nomor Induk Mahasiswa" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label class="form-label small fw-bold">Email Mahasiswa</label>
+                                    <input type="email" class="form-control" placeholder="mhs@kampus.ac.id" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label small fw-bold">Buat Kata Sandi</label>
+                                    <input type="password" class="form-control" placeholder="Minimal 6 karakter" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 fw-bold">
+                                    <i class="fa fa-user-plus me-1"></i> Daftar Akun SiLab
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =======================================================
+         MODAL 2: DETAIL SPESIFIKASI ALAT LABORATORIUM
+         ======================================================= -->
+    <div class="modal fade" id="toolDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-3 shadow border-0">
+                <div class="modal-header bg-light">
+                    <div>
+                        <span class="badge bg-primary" id="modalToolCat">Kategori</span>
+                        <h5 class="modal-title fw-bold mt-1" id="modalToolName">Nama Alat</h5>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+                        <span class="text-muted small">Kode Inventaris: <strong id="modalToolCode" class="text-dark">-</strong></span>
+                        <span class="badge badge-available" id="modalToolStock">Tersedia</span>
+                    </div>
+                    
+                    <h6 class="fw-bold text-dark mb-1"><i class="fa fa-microchip text-primary me-2"></i>Spesifikasi Teknis:</h6>
+                    <p class="text-muted small bg-light p-3 rounded" id="modalToolSpec">-</p>
+
+                    <h6 class="fw-bold text-dark mb-1"><i class="fa fa-shield-alt text-warning me-2"></i>SOP &amp; Petunjuk Keselamatan:</h6>
+                    <p class="text-muted small bg-light p-3 rounded" id="modalToolSop">-</p>
+                </div>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-secondary rounded-pill btn-sm" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary rounded-pill btn-sm fw-bold" id="modalBtnPinjam">
+                        <i class="fa fa-hand-holding me-1"></i> Ajukan Pinjam Alat Ini
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- =======================================================
+         MODAL 3: CETAK BUKTI PEMINJAMAN RESMI (PDF RECEIPT)
+         ======================================================= -->
+    <div class="modal fade" id="receiptModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-3 shadow-lg border-0">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title text-white fw-bold">
+                        <i class="fa fa-file-invoice me-2"></i>Bukti Peminjaman Alat Laboratorium (SiLab Receipt)
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4" id="receiptPrintArea">
+                    <!-- Lembar Struk Resmi SiLab -->
+                    <div class="receipt-paper">
+                        <div class="receipt-stamp">VERIFIED SILAB</div>
+
+                        <!-- Header Kop Dokumen -->
+                        <div class="d-flex align-items-center justify-content-between pb-3 mb-4 border-bottom">
+                            <div class="d-flex align-items-center">
+                                <img src="{{ asset('img/silab-logo.png') }}" alt="SiLab" style="height: 48px;" class="me-3">
+                                <div>
+                                    <h4 class="fw-bold mb-0 text-primary" style="letter-spacing: -0.5px;">SiLab KAMPUS</h4>
+                                    <small class="text-muted">Sistem Informasi Inventaris &amp; Peminjaman Alat Lab Terpadu</small>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-light text-dark border px-3 py-1 fw-bold" id="recId">SLB-202610-0000</span><br>
+                                <small class="text-muted" id="recDate">Tgl Cetak: 07/10/2026</small>
+                            </div>
+                        </div>
+
+                        <!-- Status Peminjaman -->
+                        <div class="alert alert-success d-flex align-items-center py-2 mb-4">
+                            <i class="fa fa-check-circle fa-2x me-3"></i>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Pengajuan Peminjaman Telah Diterima Sistem!</h6>
+                                <small>Silakan tunjukkan struk tanda terima ini kepada Petugas Laboratorium saat pengambilan alat.</small>
+                            </div>
+                        </div>
+
+                        <!-- Data Peminjam -->
+                        <div class="row g-3 mb-4">
+                            <div class="col-sm-6">
+                                <div class="bg-light p-3 rounded h-100">
+                                    <h6 class="fw-bold text-dark mb-2 border-bottom pb-1">Identitas Mahasiswa Peminjam:</h6>
+                                    <table class="table table-sm table-borderless mb-0 small">
+                                        <tr>
+                                            <td class="text-muted" style="width: 35%;">Nama:</td>
+                                            <td class="fw-bold" id="recStudentName">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">NIM:</td>
+                                            <td class="fw-bold" id="recStudentNim">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">Program Studi:</td>
+                                            <td id="recStudentMajor">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">No. WhatsApp:</td>
+                                            <td id="recStudentPhone">-</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="bg-light p-3 rounded h-100">
+                                    <h6 class="fw-bold text-dark mb-2 border-bottom pb-1">Rincian Durasi &amp; Keperluan:</h6>
+                                    <table class="table table-sm table-borderless mb-0 small">
+                                        <tr>
+                                            <td class="text-muted" style="width: 40%;">Tgl Pinjam:</td>
+                                            <td class="fw-bold text-success" id="recStartDate">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">Tgl Kembali:</td>
+                                            <td class="fw-bold text-danger" id="recEndDate">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">Keperluan:</td>
+                                            <td id="recPurpose">-</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-muted">Catatan:</td>
+                                            <td id="recNotes">-</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tabel Barang -->
+                        <h6 class="fw-bold mb-2">Daftar Peralatan yang Diajukan:</h6>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-bordered table-sm align-middle small">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th style="width: 5%;">No</th>
+                                        <th>Nama Alat &amp; Kode Inventaris</th>
+                                        <th style="width: 15%;" class="text-center">Jumlah</th>
+                                        <th style="width: 25%;" class="text-center">Status Barang</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-center">1</td>
+                                        <td class="fw-bold" id="recToolName">-</td>
+                                        <td class="text-center" id="recToolQty">1 Unit</td>
+                                        <td class="text-center"><span class="badge bg-warning text-dark">Menunggu Verifikasi Lab</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Syarat & Ketentuan -->
+                        <div class="border rounded p-3 mb-4 bg-light">
+                            <h6 class="fw-bold text-dark mb-1 small">Syarat &amp; Ketentuan Laboratorium:</h6>
+                            <ol class="small text-muted mb-0 ps-3">
+                                <li>Peminjam wajib memeriksa kelengkapan fisik dan fungsi alat bersama Petugas Lab saat serah terima.</li>
+                                <li>Keterlambatan pengembalian melebihi tanggal yang ditentukan akan dikenakan sanksi pembekuan akses laboratorium.</li>
+                                <li>Kerusakan atau kehilangan akibat kelalaian pemakaian menjadi tanggung jawab peminjam sepenuhnya.</li>
+                            </ol>
+                        </div>
+
+                        <!-- Tanda Tangan Dokumen -->
+                        <div class="row pt-3 text-center small">
+                            <div class="col-6">
+                                <p class="mb-4">Mahasiswa Peminjam,</p>
+                                <div style="height: 40px;"></div>
+                                <strong id="recSignName">(Nama Mahasiswa)</strong><br>
+                                <span class="text-muted" id="recSignNim">NIM. -</span>
+                            </div>
+                            <div class="col-6">
+                                <p class="mb-4">Petugas / Asisten Laboratorium,</p>
+                                <div style="height: 40px;"></div>
+                                <strong>(Petugas SiLab)</strong><br>
+                                <span class="text-muted">Laboratorium Terpadu Kampus</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4 fw-bold" onclick="printReceipt()">
+                        <i class="fa fa-print me-1"></i> Cetak Bukti (Print / PDF)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ asset('lib/parallax/parallax.min.js') }}"></script>
+    <script src="{{ asset('lib/isotope/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('lib/lightbox/js/lightbox.min.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{ asset('js/main.js') }}"></script>
+
+    <!-- SiLab Interactive Logic -->
+    <script>
+        $(document).ready(function() {
+            // Set default date: today & +3 days
+            var today = new Date();
+            var yyyy = today.getFullYear();
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var dd = String(today.getDate()).padStart(2, '0');
+            var startDateStr = yyyy + '-' + mm + '-' + dd;
+            $('#startDate').val(startDateStr);
+            
+            var retDate = new Date();
+            retDate.setDate(retDate.getDate() + 3);
+            var rmm = String(retDate.getMonth() + 1).padStart(2, '0');
+            var rdd = String(retDate.getDate()).padStart(2, '0');
+            var endDateStr = retDate.getFullYear() + '-' + rmm + '-' + rdd;
+            $('#endDate').val(endDateStr);
+
+            // Filter Katalog Alat
+            $('.filter-btn').on('click', function() {
+                $('.filter-btn').removeClass('active');
+                $(this).addClass('active');
+
+                var cat = $(this).data('category');
+                if (cat === 'all') {
+                    $('.tool-item').fadeIn(300);
+                } else {
+                    $('.tool-item').hide();
+                    $('.tool-item.' + cat).fadeIn(300);
+                }
+            });
+
+            // Tombol "Pinjam" pada kartu alat
+            $('.btn-book').on('click', function() {
+                var toolName = $(this).data('tool');
+                $('#selectedTool').val(toolName);
+                
+                // Scroll halus ke form
+                $('html, body').animate({
+                    scrollTop: $("#form-pinjam").offset().top - 80
+                }, 600);
+
+                // Highlight dropdown
+                $('#selectedTool').addClass('border-primary bg-white').focus();
+                setTimeout(function() {
+                    $('#selectedTool').removeClass('border-primary bg-white');
+                }, 2000);
+            });
+
+            // Tombol "Detail Spesifikasi" pada kartu alat
+            $('.btn-detail').on('click', function() {
+                var name = $(this).data('name');
+                var code = $(this).data('code');
+                var cat = $(this).data('cat');
+                var stock = $(this).data('stock');
+                var spec = $(this).data('spec');
+                var sop = $(this).data('sop');
+
+                $('#modalToolName').text(name);
+                $('#modalToolCode').text(code);
+                $('#modalToolCat').text(cat);
+                $('#modalToolStock').text(stock);
+                $('#modalToolSpec').html(spec.replace(/\|/g, '<br><i class="fa fa-angle-right text-primary me-2"></i>'));
+                $('#modalToolSop').text(sop);
+
+                $('#modalBtnPinjam').off('click').on('click', function() {
+                    $('#toolDetailModal').modal('hide');
+                    $('#selectedTool').val(name + ' (' + code + ')');
+                    $('html, body').animate({
+                        scrollTop: $("#form-pinjam").offset().top - 80
+                    }, 600);
+                });
+
+                var detailModal = new bootstrap.Modal(document.getElementById('toolDetailModal'));
+                detailModal.show();
+            });
+
+            // Form Submit Peminjaman
+            $('#loanForm').on('submit', function(e) {
+                e.preventDefault();
+
+                var name = $('#studentName').val();
+                var nim = $('#studentNim').val();
+                var major = $('#studentMajor').val();
+                var phone = $('#studentPhone').val();
+                var tool = $('#selectedTool').val();
+                var qty = $('#toolQty').val() + ' Unit';
+                var sDate = $('#startDate').val();
+                var eDate = $('#endDate').val();
+                var purpose = $('#loanPurpose').val();
+                var notes = $('#loanNotes').val() || '-';
+
+                // Generate random Receipt ID
+                var randNum = Math.floor(1000 + Math.random() * 9000);
+                var recId = 'SLB-' + yyyy + mm + '-' + randNum;
+
+                // Bind to Receipt Modal
+                $('#recId').text(recId);
+                $('#recDate').text('Tgl Cetak: ' + dd + '/' + mm + '/' + yyyy);
+                $('#recStudentName').text(name);
+                $('#recStudentNim').text(nim);
+                $('#recStudentMajor').text(major);
+                $('#recStudentPhone').text(phone);
+                $('#recStartDate').text(sDate);
+                $('#recEndDate').text(eDate);
+                $('#recPurpose').text(purpose);
+                $('#recNotes').text(notes);
+                $('#recToolName').text(tool);
+                $('#recToolQty').text(qty);
+                $('#recSignName').text(name);
+                $('#recSignNim').text('NIM. ' + nim);
+
+                // Show Receipt Modal
+                var receiptModal = new bootstrap.Modal(document.getElementById('receiptModal'));
+                receiptModal.show();
+            });
+        });
+
+        // Handler Print Receipt
+        function printReceipt() {
+            window.print();
+        }
+
+        // Dummy Login Handlers
+        function handleMhsLogin(e) {
+            e.preventDefault();
+            alert('Login Mahasiswa Berhasil!\nSelamat datang di portal peminjaman SiLab.');
+            var loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+            if (loginModal) loginModal.hide();
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            alert('Login Petugas Lab Berhasil!\nMembuka Dashboard Admin SiLab (Mazer Template)...');
+            window.open('{{ route('dashboard') }}', '_blank');
+        }
+
+        function handleRegister(e) {
+            e.preventDefault();
+            alert('Pendaftaran Akun Berhasil!\nSilakan login menggunakan NIM dan kata sandi Anda.');
+            $('#mhs-tab').tab('show');
+        }
+    </script>
+</body>
+
+</html>
