@@ -59,5 +59,7 @@ class DatabaseSeeder extends Seeder
         foreach ($alats as $alat) {
             \App\Models\Alat::create($alat);
         }
+
+        $this->call(LaboratoriumSeeder::class);
     }
 }
