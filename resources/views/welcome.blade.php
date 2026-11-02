@@ -74,7 +74,7 @@
             <div class="col-lg-7 px-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center me-4">
                     <span class="fa fa-phone-alt me-2 text-primary"></span>
-                    <span>(021) 789-0123 / Ext. 204</span>
+                    <span>085119016405</span>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center me-4">
                     <span class="far fa-envelope me-2 text-primary"></span>

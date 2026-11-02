@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AlatController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JadwalPraktikumController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaboratoriumController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -43,6 +45,10 @@ Route::get('/team.html', fn () => view('guest.team'));
 
 Route::get('/testimonial', fn () => view('guest.testimonial'))->name('guest.testimonial');
 Route::get('/testimonial.html', fn () => view('guest.testimonial'));
+
+// Guest — Laboratorium & Jadwal (Publik, tanpa login)
+Route::get('/laboratorium', [LaboratoriumController::class, 'indexGuest'])->name('guest.laboratorium');
+Route::get('/laboratorium/detail/{id}', [LaboratoriumController::class, 'showGuest'])->name('guest.laboratorium.show');
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])
@@ -94,6 +100,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('return', [PeminjamanController::class, 'returnItem'])
             ->name('peminjaman.return');
     });
+
+    // Laboratorium — CRUD 1 (Eloquent ORM)
+    Route::resource('laboratorium', LaboratoriumController::class);
+
+    // Jadwal Praktikum — CRUD 2 (Query Builder)
+    Route::resource('jadwal-praktikum', JadwalPraktikumController::class);
 });
 
 require __DIR__.'/auth.php';

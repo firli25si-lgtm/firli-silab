@@ -52,6 +52,22 @@
                 </a>
             </li>
 
+            <li class="sidebar-title">Lab &amp; Jadwal</li>
+
+            <li class="sidebar-item {{ request()->routeIs('laboratorium.*') ? 'active' : '' }}">
+                <a href="{{ route('laboratorium.index') }}" class="sidebar-link">
+                    <i class="bi bi-building"></i>
+                    <span>Data Laboratorium</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item {{ request()->routeIs('jadwal-praktikum.*') ? 'active' : '' }}">
+                <a href="{{ route('jadwal-praktikum.index') }}" class="sidebar-link">
+                    <i class="bi bi-calendar-week"></i>
+                    <span>Jadwal Praktikum</span>
+                </a>
+            </li>
+
             <li class="sidebar-item">
                 <a href="{{ url('/') }}" class="sidebar-link" target="_blank">
                     <i class="bi bi-box-arrow-up-right"></i>
