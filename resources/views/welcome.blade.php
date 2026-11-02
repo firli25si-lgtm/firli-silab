@@ -118,6 +118,7 @@
             <div class="navbar-nav ms-auto p-4 p-lg-0">
                 <a href="{{ route('home') }}" class="nav-item nav-link active">Beranda</a>
                 <a href="#tentang" class="nav-item nav-link">Tentang SiLab</a>
+                <a href="{{ route('guest.laboratorium') }}" class="nav-item nav-link">Laboratorium</a>
                 <a href="#katalog" class="nav-item nav-link">Katalog Alat</a>
                 <a href="#roles" class="nav-item nav-link">Peran Pengguna</a>
                 <a href="#alur" class="nav-item nav-link">Alur Peminjaman</a>
@@ -476,6 +477,33 @@
         </div>
     </div>
     <!-- User Roles End -->
+
+
+    <!-- Laboratorium Section Start (Integrasi Partial View) -->
+    <div class="container-xxl py-5 bg-light" id="laboratorium">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 650px;">
+                <p class="fs-5 fw-bold text-primary mb-1">FASILITAS &amp; RUANG PRAKTIKUM</p>
+                <h1 class="display-6 mb-3 fw-bold">Daftar Laboratorium Kampus</h1>
+                <p class="text-muted mb-5">Pantau kapasitas, penanggung jawab, dan jadwal praktikum terintegrasi di setiap laboratorium.</p>
+            </div>
+            <div class="row g-4">
+                @forelse ($laboratoriums ?? [] as $lab)
+                    @include('guest.partials.lab-card', ['lab' => $lab])
+                @empty
+                    <div class="col-12 text-center py-4">
+                        <p class="text-muted">Belum ada data laboratorium yang tersedia.</p>
+                    </div>
+                @endforelse
+            </div>
+            <div class="text-center mt-5">
+                <a href="{{ route('guest.laboratorium') }}" class="btn btn-primary py-3 px-5 rounded-pill fw-bold">
+                    <i class="fa fa-th-large me-2"></i>Lihat Semua Laboratorium &amp; Jadwal Lengkap
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Laboratorium Section End -->
 
 
     <!-- Catalog Start (Katalog Alat & Filter Kategori) -->

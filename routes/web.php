@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 // Welcome / Landing Page SiLab Guest
 Route::get('/', function () {
-    return view('welcome');
+    $laboratoriums = \App\Models\Laboratorium::withCount('jadwals')
+        ->where('status', '!=', 'nonaktif')
+        ->take(4)
+        ->get();
+    return view('welcome', compact('laboratoriums'));
 })->name('home');
 
 // Guest Pages (Sesuai folder silab-guest)
@@ -47,8 +51,9 @@ Route::get('/testimonial', fn () => view('guest.testimonial'))->name('guest.test
 Route::get('/testimonial.html', fn () => view('guest.testimonial'));
 
 // Guest — Laboratorium & Jadwal (Publik, tanpa login)
-Route::get('/laboratorium', [LaboratoriumController::class, 'indexGuest'])->name('guest.laboratorium');
-Route::get('/laboratorium/detail/{id}', [LaboratoriumController::class, 'showGuest'])->name('guest.laboratorium.show');
+Route::get('/daftar-laboratorium', [LaboratoriumController::class, 'indexGuest'])->name('guest.laboratorium');
+Route::get('/daftar-laboratorium/detail/{id}', [LaboratoriumController::class, 'showGuest'])->name('guest.laboratorium.show');
+Route::get('/laboratorium.html', fn () => redirect()->route('guest.laboratorium'));
 
 // Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])
