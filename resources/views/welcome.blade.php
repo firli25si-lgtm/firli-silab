@@ -74,7 +74,7 @@
             <div class="col-lg-7 px-5 text-start">
                 <div class="h-100 d-inline-flex align-items-center me-4">
                     <span class="fa fa-phone-alt me-2 text-primary"></span>
-                    <span>085119016405</span>
+                    <span>082114128635</span>
                 </div>
                 <div class="h-100 d-inline-flex align-items-center me-4">
                     <span class="far fa-envelope me-2 text-primary"></span>
@@ -1182,8 +1182,8 @@
                 <!-- Kolom 2: Jam Operasional & Lokasi -->
                 <div class="col-lg-4 col-md-6">
                     <h5 class="text-white mb-4">Lokasi &amp; Jam Layanan</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3 text-primary"></i>Gedung Laboratorium Terpadu, Lantai 2</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3 text-primary"></i>(021) 789-0123 / Ext. 204</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3 text-primary"></i>Gedung Laboratorium Rumbai Terpadu, Lantai 2</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3 text-primary"></i>082114128635</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3 text-primary"></i>silab@kampus.ac.id</p>
                     <div class="bg-secondary p-3 rounded mt-3 text-light small">
                         <strong>Jam Buka Ruang Sirkulasi:</strong><br>
